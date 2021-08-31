@@ -1,29 +1,31 @@
 tabTextAnimation = () => {
-    let scrollAvailable = false;
+    let tabAvailable = false;
     let oldTitle = document.title;
   
+    /*If we are in another tab*/
     window.onblur = () => {
       let title = " Take care yourself! ";
       let position = 0;
       
-      scrollAvailable = false;
+      tabAvailable = false;
   
-      scrolltitle = () => {
-          if(scrollAvailable == true) return
+      animatetitle = () => {
+          if(tabAvailable == true) return
   
           document.title = title.substring(position, title.length) + title.substring(0, position); position++;
   
           if (position > title.length) 
               position = 0
-              window.setTimeout(scrolltitle, 100);
+              window.setTimeout(animatetitle, 100);
       }
-      scrolltitle();
+      animatetitle();
     };
   
+    /*If we are in our tab*/
     window.onfocus = () => {
-      scrollAvailable = true;
+      tabAvailable = true;
   
-      if(scrollAvailable == true) document.title = oldTitle;
+      if(tabAvailable == true) document.title = oldTitle;
     }
   } 
   
